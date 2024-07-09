@@ -1,0 +1,44 @@
+.form {
+  --width-of-input: 200px;
+  --border-height: 1px;
+  --border-before-color: #bc8f8f;
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+/* styling of Input */
+.form .input {
+  caret-color: #5891ff;
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: 5.9em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: 2.5px solid var(--border-before-color);
+}
+/* styling of animated border */
+.form .input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+/* Hover on Input */
+.form input:hover {
+  background: var(--input-hovered-color);
+}
+
+.form input:focus {
+  outline: none;
+}
+/* here is code of animated border */
+.form input:focus ~ .input-border {
+  width: 100%;
+}

@@ -1,0 +1,115 @@
+/* 缩放样式 */
+#map :deep(.ol-zoom.ol-unselectable.ol-control) {
+  top: 100px;
+}
+#map :deep(.ol-unselectable.ol-control) > button {
+  background: rgba(0, 60, 136, 1);
+}
+#map :deep(.ol-unselectable.ol-control) > button:hover {
+  background: #3f72af;
+}
+/* 滑块 */
+#map :deep(.ol-zoomslider.ol-unselectable.ol-control) {
+  top: 195px;
+  left: 8px;
+  width: 26.08px;
+  background: rgba(0, 60, 136, 0.5);
+}
+/* 导航控件 */
+.icon {
+  position: fixed;
+  top: 160px;
+  left: 11px;
+  width: 26px;
+  height: 27px;
+  line-height: 27px;
+  background: rgba(0, 60, 136, 1);
+  text-align: center;
+  border-radius: 5px;
+  z-index: 100;
+}
+.icon:hover {
+  background: #3f72af;
+}
+.icon .icon-dingwei {
+  color: #fff;
+  font-size: 18px;
+}
+/* 切换底图 */
+.control {
+  position: fixed;
+  right: 20px;
+  bottom: 12px;
+  z-index: 100;
+  border: none;
+  cursor: pointer;
+}
+
+.control img {
+  width: 130px;
+  height: 130px;
+  border: 2px solid rgba(0, 60, 136, 0.4);
+  transition: all 0.3s;
+}
+#shiliang {
+  margin-right: 15px;
+}
+.control img:hover {
+  border: 2px solid rgba(0, 60, 136, 1);
+}
+/* 鼠标位置 */
+#map :deep(#mouse-position) {
+  background-color: rgba(0, 60, 136, 0.5);
+  /* width: 122px; */
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 1px 5px;
+  margin: 0 auto;
+  position: absolute;
+  border: 1px solid rgba(0, 60, 136, 1);
+  bottom: 12px;
+  left: 50%;
+  z-index: 100;
+  color: #fff;
+  transform: translateX(-50%);
+}
+/* 比例尺 */
+#map :deep(.ol-scale-line.ol-unselectable) {
+  left: 15%;
+  bottom: 12px;
+  background: rgba(0, 60, 136, 0.5);
+}
+/* 鹰眼样式 */
+.ol-custom-overviewmap,
+.ol-custom-overviewmap.ol-uncollapsible {
+  bottom: auto;
+  left: auto;
+  /* 右侧显示 */
+  right: 0;
+  /* 顶部显示 */
+  top: 0;
+}
+
+/* 鹰眼控件展开时控件外框的样式 */
+.ol-custom-overviewmap:not(.ol-collapsed) {
+  border: 1px solid black;
+}
+
+/* 鹰眼控件中地图容器样式 */
+.ol-custom-overviewmap .ol-overviewmap-map {
+  border: none;
+  width: 300px;
+}
+
+/* 鹰眼控件中显示当前窗口中主图区域的边框 */
+.ol-custom-overviewmap .ol-overviewmap-box {
+  border: 2px solid red;
+}
+
+/* 鹰眼控件展开时其控件按钮图标的样式 */
+.ol-custom-overviewmap:not(.ol-collapsed) button {
+  bottom: auto;
+  left: auto;
+  right: 1px;
+  top: 1px;
+}
