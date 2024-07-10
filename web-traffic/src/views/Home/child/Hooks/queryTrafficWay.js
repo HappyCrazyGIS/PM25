@@ -1,22 +1,22 @@
 // 矢量数据源：实时路况
 var nowTrafficSource = new ol.source.Vector({
-  wrapX: false,
+  wrapX: false
 })
 
 // 矢量图层：实时路况
 var nowTrafficLayer = new ol.layer.Vector({
-  source: nowTrafficSource,
+  source: nowTrafficSource
 })
 export const queryTrafficWay = (nowTrafficeFlag, map) => {
   nowTrafficeFlag.value = !nowTrafficeFlag.value
   if (nowTrafficeFlag.value) {
     let service = {
-      name: "guanggu",
-      layerId: 1,
+      name: 'guanggu',
+      layerId: 1
     }
     Query.queryLineByRectangle({
       service,
-      callback: queryTrafficSuccess(map),
+      callback: queryTrafficSuccess(map)
     })
   } else {
     nowTrafficSource.clear()
@@ -44,11 +44,11 @@ const querySuccess = (result) => {
     let num = item.AttValue[4]
 
     //配色
-    let color = "#34b000"
+    let color = '#34b000'
     if (num <= 1500 && num > 1000) {
-      color = "#fecb00"
+      color = '#fecb00'
     } else if (num > 1500) {
-      color = "#8e0e0b"
+      color = '#8e0e0b'
     }
 
     //样式
@@ -56,8 +56,8 @@ const querySuccess = (result) => {
       //边线样式
       stroke: new ol.style.Stroke({
         color: color,
-        width: 8,
-      }),
+        width: 8
+      })
     })
 
     //给要素分别添加样式

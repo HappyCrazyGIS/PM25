@@ -3,7 +3,7 @@ import { FlyTo } from "./flyTo"
 export const initMap = () => {
   let map = ref(null)
   onMounted(() => {
-    const key = "4fb848e7353ebbd1b02413025f907a42"
+    const key = 'c0313a16b7141d25ae197a72e2ce004b'
     const TiandiMap_vec = new ol.layer.Tile({
       title: "天地图矢量图层",
       source: new ol.source.XYZ({
