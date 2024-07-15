@@ -17,6 +17,12 @@ const router = createRouter({
       path: "/home",
       name: "home",
       component: () => import("../views/Home/Home.vue"),
+
+    },
+    {
+      path: "/health",
+      name: "health",
+      component:()=>import("../views/Home/child/3dcity.vue")
     },
     {
       path: "/user-management",

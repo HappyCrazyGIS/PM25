@@ -19,6 +19,7 @@
         <Measure></Measure>
         <ExportPic></ExportPic>
       </el-sub-menu>
+    <el-menu-item index="5" @click="changeRoute2health">健康路径</el-menu-item>
     </el-menu>
     <div class="traffic-signs" v-if="nowTrafficeFlag">
       <button style="background-color: #34b000">通畅</button>
@@ -55,6 +56,7 @@ import EventBus from "../../../Bus/event"
 //清除测量图层
 import { clearLayer } from "../../../components/Hooks/activeDraw"
 import { removeOverlay } from "../../../components/Hooks/measure"
+import  router from '../../../router/index.js'
 EventBus.on("removeDraw", (val = false) => {
   flag.value = true
   clearMeasureLayer.value = val
@@ -81,6 +83,12 @@ const removeDraw = () => {
     removeOverlay()
   }
   flag.value = false
+}
+
+const changeRoute2health = () => {
+  console.log('路由跳转到健康路径')
+  //路由跳转到健康路径
+  router.push({ name: "health" })
 }
 </script>
 <style scoped>
