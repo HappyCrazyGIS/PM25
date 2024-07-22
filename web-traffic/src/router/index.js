@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: "/health",
       name: "health",
-      component:()=>import("../views/Home/child/3dcity.vue")
+      component:()=>import("../views/cesium/Health/3dcity.vue")
     },
     {
       path: "/user-management",
