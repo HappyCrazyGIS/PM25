@@ -5,6 +5,7 @@ const { initManger } = require("./initManger")
 var usersRouter = require("./routes/users")
 var eventRouter = require("./routes/event")
 var noticeRouter = require("./routes/notice")
+var PM25Router = require("./routes/pm25")
 
 //导入定义验证规则的包
 const joi = require("joi")
@@ -19,7 +20,7 @@ const { expressjwt: expressJWT } = require("express-jwt")
 const { token } = require("./config")
 app.use(
   expressJWT({ secret: token.jwtSecretKey, algorithms: ["HS256"] }).unless({
-    path: [/^\/users\/login/, /^\/users\/regUser/],
+    path: [/^\/users\/login/, /^\/users\/regUser/,/^\/PM25\/getPmFile/],
   })
 )
 
@@ -57,7 +58,7 @@ app.use((req, res, next) => {
 app.use("/users", usersRouter)
 app.use("/event", eventRouter)
 app.use("/notice", noticeRouter)
-
+app.use("/PM25", PM25Router)
 //定义错误级别的中间件
 app.use((err, req, res, next) => {
   //验证规则导致的错误
@@ -69,5 +70,7 @@ app.use((err, req, res, next) => {
   //未知的错误
   res.send({ status: 1, message: err })
 })
+
+
 
 module.exports = app
