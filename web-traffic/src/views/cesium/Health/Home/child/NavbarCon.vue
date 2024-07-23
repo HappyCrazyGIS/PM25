@@ -24,7 +24,7 @@
       <el-icon><Loading /></el-icon>
       <span >PM2.5模拟</span>
     </el-menu-item>
-    <el-menu-item index="3">
+    <el-menu-item index="3" @click="handleClick">
       <el-icon><Position /></el-icon>
       <span>路径规划</span>
     </el-menu-item>
@@ -38,6 +38,15 @@ import {
   DArrowLeft,CirclePlusFilled,Loading,Position
 } from '@element-plus/icons-vue'
 const isCollapse = ref(false)
+const showRouteBar = ref(false)
+// 定义一个emit事件，在父组件中监听该事件
+const emit = defineEmits(['updateParentData']);
+function handleClick() {
+  // 发射事件，并可选地传递数据给父组件
+  showRouteBar.value = !showRouteBar.value;
+
+  emit('updateParentData', showRouteBar.value);
+}
 const handleOpen = (key: string, keyPath: string[]) => {
   // console.log(key, keyPath)
 }

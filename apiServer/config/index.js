@@ -10,7 +10,7 @@ module.exports = {
     host: "127.0.0.1",
     port: "3306",
     user: "root",
-    password: "bz001473",
+    password: "123456",
     database: "db_traffic",
     dateStrings: true, //处理时间格式，适用于mysql2
   },

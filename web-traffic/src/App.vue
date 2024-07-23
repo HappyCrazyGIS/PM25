@@ -9,4 +9,10 @@ import { RouterLink, RouterView } from "vue-router"
 <style>
 @import url("@/assets/styles/base.css");
 </style>
-<style scoped></style>
+<style scoped>
+#app {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+      }
+</style>
