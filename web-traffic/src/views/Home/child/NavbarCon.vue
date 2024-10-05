@@ -20,6 +20,7 @@
         <ExportPic></ExportPic>
       </el-sub-menu>
     <el-menu-item index="5" @click="changeRoute2health">健康路径</el-menu-item>
+    <el-menu-item index="6" @click="changeRoute2tracks">轨迹记录</el-menu-item>
     </el-menu>
     <div class="traffic-signs" v-if="nowTrafficeFlag">
       <button style="background-color: #34b000">通畅</button>
@@ -89,6 +90,11 @@ const changeRoute2health = () => {
   console.log('路由跳转到健康路径')
   //路由跳转到健康路径
   router.push({ name: "health" })
+}
+const changeRoute2tracks = () => {
+  console.log('路由跳转到轨迹记录')
+  //路由跳转到轨迹记录
+  router.push({ name: "tracks" })
 }
 </script>
 <style scoped>

@@ -38,6 +38,11 @@ const router = createRouter({
       path: "/:pathMatch(.*)",
       redirect: "/not-found",
     },
+    {
+      path:"/tracks",
+      name:"tracks",
+      component:()=>import("../views/tracks/tracks.vue")
+    }
   ],
 })
 

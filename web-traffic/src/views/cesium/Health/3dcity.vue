@@ -19,7 +19,7 @@
       :value="item.value"/>
     </el-select>
     <el-button @click="searchRoute" class="routeBoxBbutton">开始导航</el-button>
-    <el-button @click="searchRoute" class="routeBoxBbutton">污染分析</el-button>
+    <el-button @click="" class="routeBoxBbutton">污染分析</el-button>
   </div>
 </template>
 
@@ -37,6 +37,7 @@ import {
   Color,
 } from 'cesium'
 import 'cesium/Build/Cesium/Widgets/widgets.css'
+import { Roaming } from '../../../api/routeVisibility.js';
 import {getRouteData,getCoorTransform} from '../../../api/searchroute.js'
 
 import { setRoute, } from './Home/child/Hooks/healthRoute.js';
@@ -50,9 +51,7 @@ const options = ref([
 const drivingOption = ref('driving')
 // 存放 viewer 实例
 const v = ref();
-// const viewer = ref();
-// const map = ref();
-// const AMap = ref(null)
+const routePoints = ref()
 const cesiumContainer = ref(null)
 const showRouteSearch = ref(false)
 let startPoint = ref('')
@@ -65,14 +64,17 @@ let endCoor = ref({
   lng: 116.402048,
   lat: 39.925452
 })
-// let startCity = ref('')
-// let endCity = ref('')
-
-
+let roaming = ref()
+const romOptions = ref({
+  viewer: '', // viewer实例
+  model: '../../../../public/cesiumtruck/CesiumMilkTruck.gltf',
+  time: 50000,
+  data: '',
+  isPathShow: true,
+  speed: 10,
+});
 onMounted(async () => {
   v.value = await initCesium()
-  // await initAutocomplete('tipinput1');
-  // await initAutocomplete('tipinput2');
 })
 
 // 初始化 Cesium
@@ -83,7 +85,6 @@ const initCesium = async () => {
     const data = await response.json()
     // console.log(data.token)
     Ion.defaultAccessToken = data.cesiumtoken
-
     // 创建 Cesium 视图
     const viewer = new Viewer(cesiumContainer.value, {
       // 配置项
@@ -135,7 +136,6 @@ const initAutocomplete = (inputId) => {
 
 
 const searchRoute = async () => {
-  console.log('drivingOption', drivingOption.value)
   const RouteData = await getRouteData(
     drivingOption.value,
     startCoor.value,
@@ -146,13 +146,50 @@ const searchRoute = async () => {
   let path = paths[0].steps
   //路径数据加工处理
   let points = await setRoute(path)
-  // console.log('points', points)
   //绘制路径
+  // 可视化路径并把相机移动到路径上空
   Routeline(points)
+  //初始化模型
+  romOptions.value.viewer = v.value
+  romOptions.value.data = points
+  console.log('看看结果有没有被修改',romOptions.value)
+  // roaming.value = new Roaming(romOptions.value);
+  // startRoaming()
 }
+
+// 开始漫游的按钮
+const startRoaming = () => {
+  roaming.value.init(romOptions.value);
+}
+
+// function pauseRoaming() {
+//   roaming.value.pauseOrContinue(false);
+// }
+
+// function continueRoaming() {
+//   roaming.value.pauseOrContinue(true);
+// }
+
+// function changeSpeed(newSpeed) {
+//   roaming.value.changeRoamingSpeed(newSpeed);
+// }
+
+// function togglePathVisibility(visible) {
+//   roaming.value.setRoamingPathVisibility(visible);
+// }
+
+// function toggleModelVisibility(visible) {
+//   roaming.value.setRoamingModelVisibility(visible);
+// }
+
+// const roaming = new Roaming(v, romOptions);
 
 
 const Routeline = (positionsWGS84) => {
+  // positionsWGS84 = Cartesian3.fromDegreesArray(positionsWGS84)
+  // for (let point of positionsWGS84){
+  //   console.log(point instanceof Cartesian3)
+  // }
   // 绘制路径
   // 移除之前的路径
   v.value.entities.removeAll();
@@ -180,6 +217,9 @@ const handleUpdate = async(newData) => {
     await initAutocomplete('tipinput2');
   }
 }
+
+
+
 </script>
 
 <style scoped lang="scss">

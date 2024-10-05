@@ -10,8 +10,10 @@
     "@element-plus/icons-vue": "^2.0.10",
     "animate.css": "^4.1.1",
     "axios": "^1.1.3",
+    "date-fn": "^0.0.2",
     "echarts": "^5.4.0",
     "element-plus": "^2.2.21",
+    "leaflet": "^1.9.4",
     "mitt": "^3.0.0",
     "moment": "^2.29.4",
     "ol": "^9.2.4",
@@ -24,6 +26,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.3",
     "cesium": "^1.119.0",
+    "sass": "^1.79.4",
     "vite": "^3.2.10",
     "vite-plugin-cesium": "^1.2.22"
   }
