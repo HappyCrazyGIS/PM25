@@ -22,11 +22,20 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps,computed } from 'vue';
+import { defineProps,computed,defineEmits  } from 'vue';
 import { EditPen } from '@element-plus/icons-vue';  // 引入 Element Plus 图标组件
+// import { id } from 'element-plus/es/locale';
 
 const props = defineProps({
-  tracks: Object  // 接收传递的轨迹数据
+  tracks:{
+    id: Number,
+    activity_type: String,
+    start_time: String,
+    distance: Number,
+    duringTime: Number,
+    speed: Number,
+    exposure_dose: Number
+  }  // 接收传递的轨迹数据
 });
 
 // 使用 computed 计算格式化后的时间
@@ -35,6 +44,8 @@ const formattedStartTime = computed(() => {
   const time = props.tracks.start_time.split(' ')[1];
   return `${month}月${day}日 ${time}`;
 });
+
+
 </script>
 
 <style scoped>

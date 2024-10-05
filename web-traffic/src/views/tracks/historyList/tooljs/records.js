@@ -90,3 +90,41 @@ export const records = [
     exposure_dose: 2.5
   }
 ]
+
+
+export const tracksbyid = {
+  id: 1,
+  name: '复杂轨迹示例 - 南京市',
+  coordinates: [
+    { latitude: 32.061947, longitude: 118.796875 },
+    { latitude: 32.06202, longitude: 118.797025 },
+    { latitude: 32.06209, longitude: 118.797175 },
+    { latitude: 32.06225, longitude: 118.7973 }, // 轻微向东南转弯
+    { latitude: 32.0625, longitude: 118.79745 },
+    { latitude: 32.06275, longitude: 118.7976 },
+    { latitude: 32.063, longitude: 118.7978 }, // 稍微向东转弯
+    { latitude: 32.06325, longitude: 118.79805 },
+    { latitude: 32.06345, longitude: 118.7984 }, // 大弯转向东北
+    { latitude: 32.0636, longitude: 118.79875 },
+    { latitude: 32.0637, longitude: 118.7992 }, // 向北
+    { latitude: 32.0638, longitude: 118.7995 },
+    { latitude: 32.06385, longitude: 118.7999 }, // 向东北转
+    { latitude: 32.06395, longitude: 118.8003 },
+    { latitude: 32.064, longitude: 118.8007 },
+    { latitude: 32.06405, longitude: 118.8011 }, // 向东
+    { latitude: 32.0641, longitude: 118.8015 },
+    { latitude: 32.06415, longitude: 118.8019 },
+    { latitude: 32.0642, longitude: 118.8023 }, // 稍微向南
+    { latitude: 32.0641, longitude: 118.8027 },
+    { latitude: 32.064, longitude: 118.8031 },
+    { latitude: 32.0639, longitude: 118.8035 },
+    { latitude: 32.0638, longitude: 118.8039 }, // 稍微向西南
+    { latitude: 32.0636, longitude: 118.8042 },
+    { latitude: 32.0634, longitude: 118.8044 }, // 稍微向西
+    { latitude: 32.0632, longitude: 118.8046 },
+    { latitude: 32.063, longitude: 118.8048 }, // 向南完成
+    { latitude: 32.0628, longitude: 118.805 },
+    { latitude: 32.0626, longitude: 118.8051 },
+    { latitude: 32.0624, longitude: 118.8052 } // 终点
+  ]
+}

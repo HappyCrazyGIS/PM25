@@ -7,17 +7,29 @@
       <span>{{ records.exposureDose }}µm</span>
     </div>
     <div v-for="item in records.records" :key="item.id" class="track-item-container">
-      <TrackItem :tracks="item"></TrackItem>
+      <TrackItem :tracks="item" @click="handClick(item)"></TrackItem>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps,defineEmits } from 'vue';
 import TrackItem from './trackItem.vue'
 const props = defineProps({
   records: Object
 })
+
+//定义自定义事件，点击之后触发自定义事件
+const emit = defineEmits(['trackSelected']);
+// 处理 TrackItem 的点击事件
+const handClick = (track) => {
+  // console.log('Clicked track:', track);
+  // 你可以在这里处理点击事件，并传递轨迹数据给父组件，或者触发地图上的绘制逻辑
+  // emit 事件到父组件，或者执行其他逻辑
+  emit('trackSelected', track);
+};
+
+
 </script>
 
 <style scoped>

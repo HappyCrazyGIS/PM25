@@ -29,7 +29,7 @@
         </div>
       </div>
       <div v-for="(record, index) in calculateRecords" :key="record.date" class="contentBox">
-        <TrackCalculateItem :records="record"></TrackCalculateItem>
+        <TrackCalculateItem :records="record" @trackSelected="handleTrackSelection"></TrackCalculateItem>
       </div>
     </div>
   </div>
@@ -40,12 +40,14 @@ import { ref, onMounted,watch } from 'vue';
 import { initWebSocket, startTracking, stopTracking, toggleTracking } from '../tracks/websocketManager.js';  // 导入 WebSocket 管理功能
 import { calculateSummary } from '../tracks/historyList/tooljs/dataGroupBy';  // 导入历史记录汇总计算功能
 import TrackCalculateItem from './historyList/trackCalculateItem.vue'
-import {records} from './historyList/tooljs/records'
+import {records,tracksbyid} from './historyList/tooljs/records'
 let calculateOptions = ref('month');  // 存储历史记录计算选项
 let map = null;  // 存储 Leaflet 地图实例
 let polyline = null;  // 存储轨迹折线
 let watchId = null;  // 保存 geolocation 监听 ID
 let calculateRecords = ref()
+// 根据轨迹id获得的轨迹数据
+let tracks = ref()
 // 控制历史记录显示的标志
 let showHistory = ref(false);
 let showFlag = ref(false)
@@ -172,6 +174,20 @@ const stopTrackingHandler = () => {
     watchId = null;
     console.log('位置追踪已结束');
   }
+};
+
+// 处理 TrackCalculateItem 的点击事件
+const handleTrackSelection = (track) => {
+  console.log('Clicked track:', track);
+  // 首先发起请求，根据id和用户的id获取到这个轨迹的详细信息
+  // let trackDetail = records.find((item) => item.id === track.id);
+  tracks.value = tracksbyid
+  // 然后根据这个信息绘制到地图上
+  const coordinates = tracks.value.coordinates.map(coord => [coord.latitude, coord.longitude]);
+  // 使用 Leaflet 在地图上绘制轨迹
+  const polyline = L.polyline(coordinates, { color: 'blue' }).addTo(map);
+  // 调整地图视野，使其适应轨迹范围
+  map.fitBounds(polyline.getBounds());
 };
 </script>
 
