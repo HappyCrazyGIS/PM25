@@ -79,6 +79,6 @@ export const setRoute = async (path) => {
   // 二维数组转换为一维数组
   let result = geojson.coordinates.flat()
   // return geojson.coordinates;
-  console.log('result', result)
+  // console.log('result', result)
   return result
 }

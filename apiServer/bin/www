@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('apiserver:server');
 var http = require('http');
+var {initializeWebSocket} = require('../socket.js')
 
 /**
  * Get port from environment and store in Express.
@@ -20,7 +21,8 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+// 初始化 WebSocket 服务器
+initializeWebSocket(server);  // 调用 WebSocket 初始化函数，传入 HTTP 服务器实例
 /**
  * Listen on provided port, on all network interfaces.
  */
